@@ -51,9 +51,9 @@ android {
 }
 
 dependencies {
-    val nav_version = "2.7.5"
-    val compose_version = "1.6.0-alpha08"
-    val room = "2.6.0"
+    val nav_version = "2.7.7"
+    val compose_version = "1.6.8"
+    val room = "2.6.1"
 
     // Room
     implementation("androidx.room:room-runtime:$room")
@@ -64,7 +64,7 @@ dependencies {
     implementation("androidx.compose.ui:ui:$compose_version")
     implementation("androidx.compose.material:material:$compose_version")
     implementation("androidx.compose.ui:ui-tooling-preview:$compose_version")
-
+    //Original Dependencies
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
