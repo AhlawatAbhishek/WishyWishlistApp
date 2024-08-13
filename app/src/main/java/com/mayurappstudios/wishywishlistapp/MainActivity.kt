@@ -20,8 +20,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             WishyWishlistAppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
+                    HomeView(
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
