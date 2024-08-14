@@ -24,7 +24,7 @@ fun AppBarView(
             .heightIn(max = 45.dp),
         title = { Text(text = title, color = colorResource(id = R.color.white)) }, elevation = 3.dp,
         backgroundColor = colorResource(id = R.color.app_bar_color), navigationIcon = {
-            if (title.equals("Wishy Wishlist")) {
+            if (!title.equals("Wishy Wishlist")) {
                 IconButton(onClick = onBackNavClicked) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.ArrowBack,
