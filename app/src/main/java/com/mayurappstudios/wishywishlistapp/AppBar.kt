@@ -1,7 +1,6 @@
 package com.mayurappstudios.wishywishlistapp
 
 import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -20,7 +19,6 @@ fun AppBarView(
 ) {
     TopAppBar(
         modifier = Modifier
-            .padding(start = 4.dp)
             .heightIn(max = 45.dp),
         title = { Text(text = title, color = colorResource(id = R.color.white)) }, elevation = 3.dp,
         backgroundColor = colorResource(id = R.color.app_bar_color), navigationIcon = {
