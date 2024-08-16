@@ -26,7 +26,7 @@ import com.mayurappstudios.wishywishlistapp.model.data.Wish
 @Composable
 fun HomeView(modifier: Modifier = Modifier) {
     val context = LocalContext.current
-    Scaffold(modifier = modifier, topBar = {
+    Scaffold(containerColor = Color.LightGray, modifier = modifier, topBar = {
         AppBarView(title = "Wishy Wishlist", {
             Toast.makeText(context, "Back Button Clicked", Toast.LENGTH_SHORT).show()
         })
