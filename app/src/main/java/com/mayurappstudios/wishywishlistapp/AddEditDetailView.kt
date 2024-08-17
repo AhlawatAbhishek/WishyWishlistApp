@@ -1,5 +1,6 @@
 package com.mayurappstudios.wishywishlistapp
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -30,11 +31,14 @@ fun AddEditDetailView(
     wishViewModel: WishViewModel,
     navController: NavController
 ) {
-    Scaffold(topBar = {
+    Log.d("Receiving WishId: ", id.toString())
+    Scaffold(
+        modifier = modifier,
+        topBar = {
         AppBarView(
             title = (if (id != 0L) stringResource(id = R.string.update_wish)
             else stringResource(id = R.string.add_wish)), {
-                navController.popBackStack()
+                navController.navigateUp()
             }
         )
     }) { innerPadding ->

@@ -39,7 +39,7 @@ fun HomeView(
                 onClick = {
                     Toast.makeText(context, "Floating Action Button Clicked", Toast.LENGTH_SHORT)
                         .show()
-                    navController?.navigate(Screen.AddWishScreen.route)
+                    navController?.navigate(Screen.AddWishScreen.route+"/0L")
                 },
                 modifier = Modifier.padding(all = 20.dp),
                 contentColor = Color.White,
@@ -51,7 +51,7 @@ fun HomeView(
         LazyColumn(modifier = Modifier.padding(innerPadding)) {
             items(DummyWish.wishList) { wish ->
                 WishItem(wish = wish) {
-                    navController?.navigate(Screen.AddWishScreen.route)
+                    navController?.navigate(Screen.AddWishScreen.route + "/${wish.id}")
                 }
             }
         }
