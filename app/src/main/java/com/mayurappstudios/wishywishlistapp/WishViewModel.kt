@@ -1,12 +1,16 @@
 package com.mayurappstudios.wishywishlistapp
 
 import androidx.compose.runtime.State
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.mayurappstudios.wishywishlistapp.model.data.Wish
+import com.mayurappstudios.wishywishlistapp.model.data.WishRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
 
-class WishViewModel : ViewModel() {
+class WishViewModel(private val _wishRepository: WishRepository) : ViewModel() {
     private var _wishTitleState = mutableStateOf("");
     private var _wishDescriptionState = mutableStateOf("");
     val wishTitleState: State<String> = _wishTitleState;
@@ -14,7 +18,19 @@ class WishViewModel : ViewModel() {
     fun onWishTitleChanged(wishTitle: String) {
         _wishTitleState.value = wishTitle;
     }
-    fun onWishDescriptionState(wishDescription: String) {
+    fun onWishDescriptionChanged(wishDescription: String) {
         _wishDescriptionState.value = wishDescription;
+    }
+    var myInt : Int = 0
+    lateinit var getAllWishes : Flow<List<Wish>>;
+    init {
+        viewModelScope.launch{
+            getAllWishes = _wishRepository.getWishes()
+        }
+    }
+    fun addWIsh(wish : Wish){
+        viewModelScope.launch(Dispatchers.IO){
+            _wishRepository.addWish(wish)
+        }
     }
 }

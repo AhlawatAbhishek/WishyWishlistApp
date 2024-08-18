@@ -60,7 +60,7 @@ fun AddEditDetailView(
                 label = "Description",
                 value = wishViewModel.wishDescriptionState.value,
                 onValueChanged = { wishDescription ->
-                    wishViewModel.onWishDescriptionState(wishDescription)
+                    wishViewModel.onWishDescriptionChanged(wishDescription)
                 })
             Spacer(Modifier.height(10.dp))
             Button(onClick = {
