@@ -33,4 +33,19 @@ class WishViewModel(private val _wishRepository: WishRepository) : ViewModel() {
             _wishRepository.addWish(wish)
         }
     }
+
+    fun updateWIsh(wish : Wish){
+        viewModelScope.launch(Dispatchers.IO){
+            _wishRepository.updateWish(wish)
+        }
+    }
+    fun getAWishById(id: Int): Flow<Wish> {
+        return _wishRepository.getAWishById(id)
+    }
+
+    fun deleteWish(wish : Wish){
+        viewModelScope.launch(Dispatchers.IO){
+            _wishRepository.deleteWish(wish = wish)
+        }
+    }
 }
