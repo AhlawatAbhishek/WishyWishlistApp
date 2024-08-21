@@ -13,10 +13,12 @@ import androidx.compose.material.Button
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -37,6 +39,8 @@ fun AddEditDetailView(
     val snackMessage = remember{
         mutableStateOf("")
     }
+    val scope = rememberCoroutineScope()
+    val scaffoldState = rememberScaffoldState()
     Scaffold(
         modifier = modifier,
         topBar = {
