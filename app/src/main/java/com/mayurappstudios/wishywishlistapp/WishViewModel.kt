@@ -28,13 +28,13 @@ class WishViewModel(private val _wishRepository: WishRepository = Graph.wishRepo
             getAllWishes = _wishRepository.getWishes()
         }
     }
-    fun addWIsh(wish : Wish){
+    fun addWish(wish : Wish){
         viewModelScope.launch(Dispatchers.IO){
             _wishRepository.addWish(wish)
         }
     }
 
-    fun updateWIsh(wish : Wish){
+    fun updateWish(wish : Wish){
         viewModelScope.launch(Dispatchers.IO){
             _wishRepository.updateWish(wish)
         }
