@@ -16,6 +16,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -43,6 +44,15 @@ fun AddEditDetailView(
     }
     val scope = rememberCoroutineScope()
     val scaffoldState = rememberScaffoldState()
+    if (id != 0L) {
+        val wish = wishViewModel.getAWishById(id.toInt())
+            .collectAsState(initial = Wish(id = 0, title = "", description = "")).value
+        wishViewModel.onWishTitleChanged(wish.title)
+        wishViewModel.onWishDescriptionChanged(wish.description)
+    } else {
+        wishViewModel.onWishTitleChanged("")
+        wishViewModel.onWishDescriptionChanged("")
+    }
     Scaffold(
         modifier = modifier,
         topBar = {
@@ -52,8 +62,8 @@ fun AddEditDetailView(
                     navController.navigateUp()
                 }
             )
-        }
-    , scaffoldState = scaffoldState) { innerPadding ->
+        }, scaffoldState = scaffoldState
+    ) { innerPadding ->
         Column(
             modifier = modifier
                 .padding(innerPadding)
@@ -76,7 +86,9 @@ fun AddEditDetailView(
                 })
             Spacer(Modifier.height(10.dp))
             Button(onClick = {
-                if (wishViewModel.wishTitleState.value.isNotEmpty() && wishViewModel.wishDescriptionState.value.isNotEmpty()) {
+                if (wishViewModel.wishTitleState.value.isNotEmpty()
+                    && wishViewModel.wishDescriptionState.value.isNotEmpty()
+                ) {
                     //TODO : Save the wish
                     //TODO: Add wish
                     if (id == 0L) {
