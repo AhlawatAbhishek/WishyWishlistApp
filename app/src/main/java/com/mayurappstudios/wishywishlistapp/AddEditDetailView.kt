@@ -11,10 +11,10 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Button
 import androidx.compose.material.OutlinedTextField
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.rememberScaffoldState
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -52,7 +52,8 @@ fun AddEditDetailView(
                     navController.navigateUp()
                 }
             )
-        }) { innerPadding ->
+        }
+    , scaffoldState = scaffoldState) { innerPadding ->
         Column(
             modifier = modifier
                 .padding(innerPadding)
