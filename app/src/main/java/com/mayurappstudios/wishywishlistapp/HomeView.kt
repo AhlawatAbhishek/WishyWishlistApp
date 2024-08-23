@@ -8,8 +8,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Card
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.rememberDismissState
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -26,6 +28,7 @@ import androidx.navigation.NavController
 import com.mayurappstudios.wishywishlistapp.model.data.DummyWish
 import com.mayurappstudios.wishywishlistapp.model.data.Wish
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun HomeView(
     modifier: Modifier = Modifier,
@@ -54,6 +57,7 @@ fun HomeView(
         LazyColumn(modifier = Modifier.padding(innerPadding)) {
             if (wishList != null) {
                 items(wishList.value) { wish ->
+                    val dismissState = rememberDismissState()
                     WishItem(wish = wish) {
                         navController?.navigate(Screen.AddWishScreen.route + "/${wish.id}")
                     }
