@@ -8,7 +8,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Card
+import androidx.compose.material.DismissDirection
+import androidx.compose.material.DismissValue
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.FractionalThreshold
+import androidx.compose.material.SwipeToDismiss
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.rememberDismissState
@@ -18,14 +22,12 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.mayurappstudios.wishywishlistapp.model.data.DummyWish
 import com.mayurappstudios.wishywishlistapp.model.data.Wish
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -44,7 +46,7 @@ fun HomeView(
                 onClick = {
                     Toast.makeText(context, "Floating Action Button Clicked", Toast.LENGTH_SHORT)
                         .show()
-                    navController?.navigate(Screen.AddWishScreen.route+"/0L")
+                    navController?.navigate(Screen.AddWishScreen.route + "/0L")
                 },
                 modifier = Modifier.padding(all = 20.dp),
                 contentColor = Color.White,
@@ -53,14 +55,27 @@ fun HomeView(
                 Icon(imageVector = Icons.Default.Add, contentDescription = "Add")
             }
         }) { innerPadding ->
-        val wishList =  wishViewModel?.getAllWishes?.collectAsState(initial = listOf())
+        val wishList = wishViewModel?.getAllWishes?.collectAsState(initial = listOf())
         LazyColumn(modifier = Modifier.padding(innerPadding)) {
             if (wishList != null) {
-                items(wishList.value) { wish ->
-                    val dismissState = rememberDismissState()
-                    WishItem(wish = wish) {
-                        navController?.navigate(Screen.AddWishScreen.route + "/${wish.id}")
-                    }
+                items(wishList.value, key ={wish ->wish.id}) { wish ->
+                    val dismissState = rememberDismissState(
+                        confirmStateChange = {
+                            if (it == DismissValue.DismissedToStart || it == DismissValue.DismissedToEnd) {
+                                wishViewModel?.deleteWish(wish)
+                            }
+                            true
+                        }
+                    )
+                    SwipeToDismiss(state = dismissState, background = {}, directions = setOf(
+                        DismissDirection.StartToEnd, DismissDirection.EndToStart
+                    ), dismissThresholds = { FractionalThreshold(0.25f) },
+                        dismissContent = {
+                            WishItem(wish = wish) {
+                                navController?.navigate(Screen.AddWishScreen.route + "/${wish.id}")
+                            }
+                        }
+                    )
                 }
             }
         }
