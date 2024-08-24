@@ -82,18 +82,23 @@ fun HomeView(
                                 Color.White
                             }, label = "Color Animation"
                         )
-                        val alignment = Alignment.CenterEnd
                         Box(
                             modifier = Modifier
                                 .fillMaxSize()
                                 .background(bgColor)
                                 .padding(horizontal = 20.dp),
-                            contentAlignment = alignment
                         ) {
+                            Icon (
+                                Icons.Default.Delete,
+                                contentDescription = "Delete Icon",
+                                tint = Color.White,
+                                modifier = Modifier.align(Alignment.CenterStart)
+                            )
                             Icon(
                                 Icons.Default.Delete,
                                 contentDescription = "Delete Icon",
-                                tint = Color.White
+                                tint = Color.White,
+                                modifier = Modifier.align(Alignment.CenterEnd)
                             )
                         }
                     }, directions = setOf(
