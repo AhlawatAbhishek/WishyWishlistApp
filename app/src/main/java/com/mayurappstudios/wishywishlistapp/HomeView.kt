@@ -2,8 +2,11 @@ package com.mayurappstudios.wishywishlistapp
 
 import android.widget.Toast
 import androidx.compose.animation.animateColorAsState
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -16,6 +19,7 @@ import androidx.compose.material.FractionalThreshold
 import androidx.compose.material.SwipeToDismiss
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.rememberDismissState
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -61,7 +65,7 @@ fun HomeView(
         val wishList = wishViewModel?.getAllWishes?.collectAsState(initial = listOf())
         LazyColumn(modifier = Modifier.padding(innerPadding)) {
             if (wishList != null) {
-                items(wishList.value, key ={wish ->wish.id}) { wish ->
+                items(wishList.value, key = { wish -> wish.id }) { wish ->
                     val dismissState = rememberDismissState(
                         confirmStateChange = {
                             if (it == DismissValue.DismissedToStart || it == DismissValue.DismissedToEnd) {
@@ -71,15 +75,27 @@ fun HomeView(
                         }
                     )
                     SwipeToDismiss(state = dismissState, background = {
-                        val color by animateColorAsState(
-                            targetValue = if(dismissState.dismissDirection == DismissDirection.EndToStart){
+                        val bgColor by animateColorAsState(
+                            targetValue = if (dismissState.dismissDirection == DismissDirection.StartToEnd || dismissState.dismissDirection == DismissDirection.EndToStart) {
                                 Color.Red
-                            }else{
-                                Color.Green
+                            } else {
+                                Color.White
                             }, label = "Color Animation"
                         )
                         val alignment = Alignment.CenterEnd
-
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(bgColor)
+                                .padding(horizontal = 20.dp),
+                            contentAlignment = alignment
+                        ) {
+                            Icon(
+                                Icons.Default.Delete,
+                                contentDescription = "Delete Icon",
+                                tint = Color.White
+                            )
+                        }
                     }, directions = setOf(
                         DismissDirection.StartToEnd, DismissDirection.EndToStart
                     ), dismissThresholds = { FractionalThreshold(0.25f) },
