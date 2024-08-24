@@ -1,5 +1,7 @@
-package com.mayurappstudios.wishywishlistapp.model.data
+package com.mayurappstudios.wishywishlistapp.model.RepositoryAndDB
 
+import com.mayurappstudios.wishywishlistapp.model.data.Wish
+import com.mayurappstudios.wishywishlistapp.model.data.WishDao
 import kotlinx.coroutines.flow.Flow
 
 class WishRepository(private val wishDao : WishDao) {

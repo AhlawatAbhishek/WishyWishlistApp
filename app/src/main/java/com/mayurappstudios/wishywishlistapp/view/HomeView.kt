@@ -1,4 +1,4 @@
-package com.mayurappstudios.wishywishlistapp
+package com.mayurappstudios.wishywishlistapp.view
 
 import android.widget.Toast
 import androidx.compose.animation.animateColorAsState
@@ -35,6 +35,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.mayurappstudios.wishywishlistapp.viewmodel.WishViewModel
 import com.mayurappstudios.wishywishlistapp.model.data.Wish
 
 @OptIn(ExperimentalMaterialApi::class)

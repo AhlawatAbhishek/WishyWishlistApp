@@ -1,4 +1,4 @@
-package com.mayurappstudios.wishywishlistapp
+package com.mayurappstudios.wishywishlistapp.view
 
 sealed class Screen(val route:String) {
     object HomeScreen : Screen("home_screen")

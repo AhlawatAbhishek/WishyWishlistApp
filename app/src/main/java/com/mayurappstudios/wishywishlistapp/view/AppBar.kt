@@ -1,4 +1,4 @@
-package com.mayurappstudios.wishywishlistapp
+package com.mayurappstudios.wishywishlistapp.view
 
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.material.TopAppBar
@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
+import com.mayurappstudios.wishywishlistapp.R
 
 @Composable
 fun AppBarView(

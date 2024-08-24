@@ -1,4 +1,4 @@
-package com.mayurappstudios.wishywishlistapp
+package com.mayurappstudios.wishywishlistapp.dependencyinjection
 
 import android.app.Application
 

@@ -1,4 +1,4 @@
-package com.mayurappstudios.wishywishlistapp
+package com.mayurappstudios.wishywishlistapp.view
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

@@ -1,10 +1,9 @@
-package com.mayurappstudios.wishywishlistapp
+package com.mayurappstudios.wishywishlistapp.dependencyinjection
 
 import android.content.Context
-import androidx.room.Database
 import androidx.room.Room
-import com.mayurappstudios.wishywishlistapp.model.data.WishDatabase
-import com.mayurappstudios.wishywishlistapp.model.data.WishRepository
+import com.mayurappstudios.wishywishlistapp.model.RepositoryAndDB.WishDatabase
+import com.mayurappstudios.wishywishlistapp.model.RepositoryAndDB.WishRepository
 
 object Graph {
     lateinit var wishDatabase: WishDatabase

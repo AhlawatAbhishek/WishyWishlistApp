@@ -1,11 +1,12 @@
-package com.mayurappstudios.wishywishlistapp
+package com.mayurappstudios.wishywishlistapp.viewmodel
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.mayurappstudios.wishywishlistapp.dependencyinjection.Graph
 import com.mayurappstudios.wishywishlistapp.model.data.Wish
-import com.mayurappstudios.wishywishlistapp.model.data.WishRepository
+import com.mayurappstudios.wishywishlistapp.model.RepositoryAndDB.WishRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
